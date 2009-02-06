@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use LWP::UserAgent;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -30,9 +30,9 @@ WWW::WhoCallsMe - Query WhoCallsMe.com for details about a caller's phone number
     print "This number is not listed.\n";
   }
 
-=head1
+=head1 DESCRIPTION
 
-L<<a href="http://www.whocallsme.com/">WhoCallsMe.com</a>> is a website that compiles reports from users about
+WhoCallsMe.com is a website that compiles reports from users about
 companies that call people.  These callers might be telemarketers,
 bill collectors, legit companies, or otherwise.  These reports are
 filed by the person that received the call.  In some cases, the
@@ -43,9 +43,13 @@ You supply the phone number and it tells you if the number is listed,
 what names have been reported for this number, and a guess at the
 company name of the caller.
 
-=over
+=head2 new
 
-=item new
+  my $who = WWW::WhoCallsMe->new;
+
+Accepts no parameters.
+
+Returns a new WWW::WhoCallsMe object for your enjoyment.
 
 =cut
 
@@ -60,7 +64,7 @@ sub new
   return bless($self, $class);
 }
 
-=item fetch
+=head2 fetch
 
   my $hashref = $who->fetch($number);
 
@@ -93,8 +97,6 @@ callername - array: list of reported caller names (the "Caller:" field)
 =item *
 
 callerid - array: list of reported caller id values (the "Caller ID:" field)
-
-=back
 
 =back
 
@@ -146,6 +148,10 @@ sub fetch
 
 L<LWP>
 
+=head1 SEE ALSO
+
+L<http://www.whocallsme.com/>
+
 =head1 TODO
 
 I have no plans to expand this module, but I welcome any wishlist
@@ -160,7 +166,7 @@ file wishlist requests there as well.
 =head1 COPYRIGHT / LICENSE
 
 All data that is provided by this module is provided by
-L<<a href="http://www.whocallsme.com/">WhoCallsMe.com</a>>.  They probably own the copyright to all of the data.
+WhoCallsMe.com.  They probably own the copyright to all of the data.
 Their site doesn't appear to specify any kind of copyright or licensing
 information.  Be reasonable with it.  I'll leave it up to you to
 interpret what they think is okay for you to do with their data.
